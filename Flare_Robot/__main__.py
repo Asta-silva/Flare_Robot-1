@@ -79,11 +79,11 @@ FLARE_PHOTO = "https://telegra.ph/file/2a171330f0ad1fc02465c.jpg"
 
 PM_START_TEXT = """
 ────「 {} 」────
-*Hey! {},*
-* I am an Anime themed advance group management bot with a lots of Features.*
-➖➖➖➖➖➖➖➖➖➖➖
+*Heyaa! {},*
+* You Know me! I am a Advance & Cool Robot With So Many Sexy Features.*
+[•°•°•°•°•°•°•°•°•°•°•°]
 • *Uptime:* `{}`
-➖➖➖➖➖➖➖➖➖➖➖
+[•°•°•°•°•°•°•°•°•°•°•°]
 ➛ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/852e96d6c59f2ccad32df.jpg) ××
 """
 
@@ -666,7 +666,7 @@ def main():
     settings_callback_handler = CallbackQueryHandler(settings_button, pattern=r"stngs_", run_async=True)
 
     donate_handler = CommandHandler("donate", donate, run_async=True)
-    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats)
+    migrate_handler = MessageHandler(Filters.status_update.migrate, migrate_chats, run_async=True)
 
     # dispatcher.add_handler(test_handler)
     dispatcher.add_handler(start_handler)
