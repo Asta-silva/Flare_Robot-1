@@ -82,9 +82,11 @@ PM_START_TEXT = """
 *Heyaa! {},*
 * You Know me! I am a Advance & Cool Robot With So Many Sexy Features.*
 [•°•°•°•°•°•°•°•°•°•°•°]
-• *Uptime:* `{}`
+♛┈⛧✾✾✾┈┈•༶༶•┈┈⛧✾✾✾┈♛
+➷ *Uptime:* `{}`
 [•°•°•°•°•°•°•°•°•°•°•°]
-➛ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/852e96d6c59f2ccad32df.jpg) ××
+♛┈⛧✾✾✾┈┈•༶༶•┈┈⛧✾✾✾┈♛
+➹ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/852e96d6c59f2ccad32df.jpg) ××
 """
 
 HELP_STRINGS = """
