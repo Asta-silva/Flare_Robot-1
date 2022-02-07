@@ -5,7 +5,7 @@ from telegram import ParseMode, InlineKeyboardMarkup, InlineKeyboardButton, Upda
 from telegram.error import BadRequest, Unauthorized
 from telegram.ext import CommandHandler, CallbackQueryHandler, run_async
 
-import Cutiepii_Robot.modules.sql.connection_sql as sql
+import Flare_Robot.modules.sql.connection_sql as sql
 
 from Flare_Robot import dispatcher, DRAGONS, DEV_USERS
 from Flare_Robot.modules.helper_funcs import chat_status
