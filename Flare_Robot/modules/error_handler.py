@@ -1,4 +1,31 @@
-def error_callback(update: Update, context: CallbackContext):
+import html
+
+import io
+
+import random
+
+import sys
+
+import traceback
+
+import pretty_errors
+
+import requests
+
+from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
+
+from telegram.ext import CallbackContext, CommandHandler
+
+from zeldris import dispatcher, DEV_USERS, MESSAGE_DUMP
+
+pretty_errors.mono()
+
+class ErrorsDict(dict):
+
+    """A custom dict to store errors and their count"""
+
+
+   def error_callback(update: Update, context: CallbackContext):
 
     if not update:
 
