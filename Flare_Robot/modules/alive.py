@@ -15,7 +15,7 @@ PHOTO = "https://telegra.ph/file/6266d4d7ce030b8a7cf2d.jpg"
 @register(pattern=("/alive"))
 async def awake(event):
     TEXT = "**♡ I,m ғʟᴀʀᴇ ʀᴏʙᴏᴛ 愛** \n\n"
-    TEXT += f"**♡ I'm Working With sᴇxʏ Speed** \n\n"
+    EXT += f"**♡ I'm Working With sᴇxʏ Speed** \n\n"
     TEXT += f"**♡ ғʟᴀʀᴇ: LATEST Version** \n\n"
     TEXT += f"**♡ My Creator: [ ᴀsᴛᴀ](http://t.me/Asta_silva02)** \n\n"
     TEXT += f"**♡ ᴀɴʏ ɪssᴜᴇs ᴄᴏɴᴛᴀᴄᴛ ʜᴇʀᴇ @Freia_Support** \n\n"
