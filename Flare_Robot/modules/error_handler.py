@@ -9,7 +9,7 @@ import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
-from zeldris import dispatcher, DEV_USERS, MESSAGE_DUMP
+from Flare_Robot import dispatcher, DEV_USERS, SUPPORT_CHAT
 
 pretty_errors.mono()
 
@@ -72,7 +72,7 @@ def error_callback(update: Update, context: CallbackContext):
             with open("error.txt", "w+") as f:
                 f.write(pretty_message)
             context.bot.send_document(
-                MESSAGE_DUMP,
+                SUPPORT_CHAT,
                 open("error.txt", "rb"),
                 caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
                 f"</b>\n<code>{e}</code>",
