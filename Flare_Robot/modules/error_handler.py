@@ -13,6 +13,8 @@ from Flare_Robot import dispatcher, DEV_USERS, SUPPORT_CHAT
 
 pretty_errors.mono()
 
+errors = ErrorsDict()
+
 
 class ErrorsDict(dict):
     """A custom dict to store errors and their count"""
