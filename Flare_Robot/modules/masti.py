@@ -10,7 +10,7 @@ from telegram.utils.helpers import escape_markdown
 
 import zeldris.modules.helper_funcs.fun_strings as fun
 from Flare_Robot import LOGGER, DEV_USERS, dispatcher
-from Flare_Robot import SUPPORT_USERS as DEMONS
+from Flare_Robot import DEMONS as SUPPORT_USERS
 from Flare_Robot.modules.disable import (
     DisableAbleCommandHandler,
     DisableAbleMessageHandler,
