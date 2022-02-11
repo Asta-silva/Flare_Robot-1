@@ -1,8 +1,10 @@
 from math import ceil
 from typing import Dict, List
 
-from telegram import InlineKeyboardButton
-from Flare_Robot import BOT_USERNAME
+from Flare_Robot import NO_LOAD
+from telegram import MAX_MESSAGE_LENGTH, Bot, InlineKeyboardButton, ParseMode
+from telegram.error import TelegramError
+
 
 
 class EqInlineKeyboardButton(InlineKeyboardButton):
@@ -15,6 +17,24 @@ class EqInlineKeyboardButton(InlineKeyboardButton):
     def __gt__(self, other):
         return self.text > other.text
 
+
+def split_message(msg: str) -> List[str]:
+    if len(msg) < MAX_MESSAGE_LENGTH:
+        return [msg]
+
+    lines = msg.splitlines(True)
+    small_msg = ""
+    result = []
+    for line in lines:
+        if len(small_msg) + len(line) < MAX_MESSAGE_LENGTH:
+            small_msg += line
+        else:
+            result.append(small_msg)
+            small_msg = line
+    # Else statement at the end of the for loop, so append the leftover string.
+    result.append(small_msg)
+
+    return result
 
 
 def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
@@ -55,3 +75,56 @@ def paginate_modules(page_n: int, module_dict: Dict, prefix, chat=None) -> List:
 
     return pairs
 
+
+def send_to_list(
+    bot: Bot, send_to: list, message: str, markdown=False, html=False
+) -> None:
+    if html and markdown:
+        raise Exception("Can only send with either markdown or HTML!")
+    for user_id in set(send_to):
+        try:
+            if markdown:
+                bot.send_message(user_id, message, parse_mode=ParseMode.MARKDOWN)
+            elif html:
+                bot.send_message(user_id, message, parse_mode=ParseMode.HTML)
+            else:
+                bot.send_message(user_id, message)
+        except TelegramError:
+            pass  # ignore users who fail
+
+
+def build_keyboard(buttons):
+    keyb = []
+    for btn in buttons:
+        if btn.same_line and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn.name, url=btn.url))
+        else:
+            keyb.append([InlineKeyboardButton(btn.name, url=btn.url)])
+
+    return keyb
+
+
+def revert_buttons(buttons):
+    return "".join(
+        "\n[{}](buttonurl://{}:same)".format(btn.name, btn.url)
+        if btn.same_line
+        else "\n[{}](buttonurl://{})".format(btn.name, btn.url)
+        for btn in buttons
+    )
+
+
+def build_keyboard_parser(bot, chat_id, buttons):
+    keyb = []
+    for btn in buttons:
+        if btn.url == "{rules}":
+            btn.url = "http://t.me/{}?start={}".format(bot.username, chat_id)
+        if btn.same_line and keyb:
+            keyb[-1].append(InlineKeyboardButton(btn.name, url=btn.url))
+        else:
+            keyb.append([InlineKeyboardButton(btn.name, url=btn.url)])
+
+    return keyb
+
+
+def is_module_loaded(name):
+    return name not in NO_LOAD
