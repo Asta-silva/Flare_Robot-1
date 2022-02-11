@@ -4,7 +4,6 @@ from telegram import Message, MessageEntity
 from telegram.error import BadRequest
 
 from Flare_Robot import LOGGER
-from Flare_Robot.modules.users import get_user_id
 
 
 
