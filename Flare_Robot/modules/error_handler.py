@@ -13,11 +13,30 @@ from Flare_Robot import dispatcher, DEV_USERS, SUPPORT_CHAT
 
 pretty_errors.mono()
 
-errors = ErrorsDict()
-
 
 class ErrorsDict(dict):
     """A custom dict to store errors and their count"""
+
+    def __init__(self, *args, **kwargs):
+        self.raw = []
+        super().__init__(*args, **kwargs)
+
+    def __contains__(self, error):
+        self.raw.append(error)
+        error.identifier = "".join(random.choices("ABCDEFGHIJKLMNOPQRSTUVWXYZ", k=5))
+        for e in self:
+            if type(e) is type(error) and e.args == error.args:
+                self[e] += 1
+                return True
+        self[error] = 0
+        return False
+
+    def __len__(self):
+        return len(self.raw)
+
+
+errors = ErrorsDict()
+
 
 def error_callback(update: Update, context: CallbackContext):
     if not update:
@@ -82,6 +101,16 @@ def error_callback(update: Update, context: CallbackContext):
             )
             return
 
+        url = f"https://spaceb.in/{response['payload']['id']}"
+        context.bot.send_message(
+            SUPPORT_CHAT,
+            text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
+            f"</b>\n<code>{e}</code>",
+            reply_markup=InlineKeyboardMarkup(
+                [[InlineKeyboardButton("Cursed Errors", url=url)]],
+            ),
+            parse_mode="html",
+        )
 
 
 def list_errors(update: Update, context: CallbackContext):
