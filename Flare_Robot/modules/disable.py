@@ -21,7 +21,7 @@ FILENAME = __name__.rsplit(".", 1)[-1]
 # If module is due to be loaded, then setup all the magical handlers
 if is_module_loaded(FILENAME):
 
-    from zeldris.modules.helper_funcs.chat_status import (
+    from Flare_Robot.modules.helper_funcs.chat_status import (
         connection_status,
         is_user_admin,
         user_admin,
