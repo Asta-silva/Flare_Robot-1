@@ -1,6 +1,8 @@
+import os
 import random
 import re
 import time
+import html
 
 import requests as r
 from telegram import MAX_MESSAGE_LENGTH, ParseMode, TelegramError, Update
