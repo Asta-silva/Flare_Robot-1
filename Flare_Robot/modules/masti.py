@@ -1,25 +1,28 @@
-import os
+import html
 import random
 import re
 import time
-import html
-
+import glob
+import requests
 import requests as r
-from telegram import MAX_MESSAGE_LENGTH, ParseMode, TelegramError, Update
-from telegram.error import BadRequest
-from telegram.ext import CommandHandler, Filters, CallbackContext
-from telegram.utils.helpers import escape_markdown
+import urllib.request
+import os
 
+import Flare_Robot.modules.helper_funcs.fun_strings as fun_strings
 import Flare_Robot.modules.helper_funcs.fun_strings as fun
-from Flare_Robot import LOGGER, DEV_USERS, DRAGONS, dispatcher
-from Flare_Robot import DEMONS as SUPPORT_USERS
-from Flare_Robot.modules.disable import (
-    DisableAbleCommandHandler,
-    DisableAbleMessageHandler,
-)
+
+
+from pyrogram import filters
+from pathlib import Path
+from Flare_Robot import DEMONS, DRAGONS, pgram as bot, dispatcher, BOT_USERNAME, BOT_NAME
+from Flare_Robot.modules.disable import DisableAbleCommandHandler, DisableAbleMessageHandler
+from Flare_Robot.modules.helper_funcs.chat_status import is_user_admin
 from Flare_Robot.modules.helper_funcs.alternate import typing_action
 from Flare_Robot.modules.helper_funcs.extraction import extract_user
-from Flare_Robot.modules.helper_funcs.filters import CustomFilters
+from telegram import ChatPermissions, ParseMode, Update, Bot
+from telegram.error import BadRequest
+from telegram.ext import CallbackContext, run_async, Filters
+from telegram.utils.helpers import escape_markdown
 
 
 @typing_action
