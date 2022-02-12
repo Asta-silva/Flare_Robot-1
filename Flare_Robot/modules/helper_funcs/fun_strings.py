@@ -75,6 +75,55 @@ GDMORNING = [
     "`It is easy to imagine the world coming to an end. But it is difficult to imagine spending a day without my friends. Good morning.`",
 ]
 
+
+FLIRT_TEXT = (
+    "I hope you know CPR, because you just took my breath away!",
+    "So, aside from taking my breath away, what do you do for a living?",
+    "I ought to complain to Spotify for you not being named this week’s hottest single.",
+    "Your eyes are like the ocean; I could swim in them all day.",
+    "When I look in your eyes, I see a very kind soul",
+    "If you were a vegetable, you’d be a ‘cute-cumber.’",
+    "Do you happen to have a Band-Aid? ‘Cause I scraped my knees falling for you.",
+    "I didn’t know what I wanted in a woman until I saw you.",
+    "I was wondering if you could tell me: If you’re here, who’s running Heaven?",
+    "No wonder the sky is gray tonight , cause all the color is in your eyes.",
+    "You’ve got everything I’ve been searching for, and believe me—I’ve been looking a long time.",
+    "Do you have a map? I just got lost in your eyes."
+)
+
+
+GBAM = "<b>Beginning Of Global Bam For {user2}</b>  \n \nChat Id : <code>{chatid}</code> \nReason : <i>{reason}</i> \nGBammed By {user1}"
+
+
+GBAM_REASON = (
+    "sasta noob",
+    "sasta waifu stealer",
+    "sasta white-het hekur",
+    "sasta white-het codur",
+    "sasta white-het vala chintu",
+    "sasta hexa hekur",
+    "sasta hexa playur",
+    "sasta tiktokur💃🏾",
+    "sasta membor of team 7",
+    "sasta selmon boi",
+    "sasta fri-fire player",
+    "sasta chhota bhim",
+    "sasta chhapri",
+    "sasta jony sin",
+    "sasta chhapri nibba",
+    "sasta nibba",
+    "sasti ria chokroborti",
+    "sasti nibbi",
+    "sasta camper",
+    "sasta pubji mobeil player",
+    "Aine me khudko dekh ke hilane wala",
+    "Bts ka choda",
+    "Kabhi Kabhi lagta he apun hi bhagwan he",
+    "Aise hi sexy lag raha tha",
+    "Eminem ka choda",
+)
+
+
 # Abuse strings credits @NotAMemeBot
 ABUSE_STRINGS = (
     "Fuck off",
