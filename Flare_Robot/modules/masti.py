@@ -424,6 +424,39 @@ def goodmorning(update: Update, _: CallbackContext):
     message.reply_text(reply, parse_mode=ParseMode.MARKDOWN)
 
 
+def gbam(update, context):
+    user = update.effective_user
+    chat = update.effective_chat
+    bot, args = context.bot, context.args
+    message = update.effective_message
+
+    curr_user = html.escape(message.from_user.first_name)
+    user_id = extract_user(message, args)
+
+    if user_id:
+        gbam_user = bot.get_chat(user_id)
+        user1 = curr_user
+        user2 = html.escape(gbam_user.first_name)
+
+    else:
+        user1 = curr_user
+        user2 = bot.first_name
+
+    if update.effective_message.chat.type == "private":
+        return
+    if int(user.id) in DRAGONS or int(user.id) in DEMONS:
+        gbamm = fun_strings.GBAM
+        reason = random.choice(fun_strings.GBAM_REASON)
+        gbam = gbamm.format(user1=user1, user2=user2, chatid=chat.id, reason=reason)
+        context.bot.sendMessage(chat.id, gbam, parse_mode=ParseMode.HTML)
+
+
+def flirt(update: Update, context: CallbackContext):
+    reply_text = update.effective_message.reply_to_message.reply_text if update.effective_message.reply_to_message else update.effective_message.reply_text
+    reply_text(random.choice(fun_strings.FLIRT_TEXT))
+
+
+
 __help__ = """
 Some dank memes for fun or whatever!
 
@@ -448,7 +481,7 @@ Some dank memes for fun or whatever!
 Some other regex filters are:
 `me too` | `good morning` | `good night`.
 
-Zeldris will reply random strings accordingly when these words are used!
+Flare will reply random strings accordingly when these words are used!
 All regex filters can be disabled incase u don't want... like: `/disable metoo`.
 """
 
@@ -472,6 +505,8 @@ PUNCH_HANDLER = DisableAbleCommandHandler(
 )
 HUG_HANDLER = DisableAbleCommandHandler("warm", hug, pass_args=True, run_async=True)
 GBUN_HANDLER = CommandHandler("gbun", gbun, run_async=True)
+GBAM_HANDLER = CommandHandler("gbam", gbam, run_async=True)
+FLIRT_HANDLER = CommandHandler("flirt", flirt, run_async=True)
 TABLE_HANDLER = DisableAbleCommandHandler("table", table, run_async=True)
 CRI_HANDLER = DisableAbleCommandHandler("cri", cri, run_async=True)
 PASTA_HANDLER = DisableAbleCommandHandler("pasta", copypasta, run_async=True)
@@ -506,6 +541,8 @@ dispatcher.add_handler(RUNS_HANDLER)
 dispatcher.add_handler(SLAP_HANDLER)
 dispatcher.add_handler(PUNCH_HANDLER)
 dispatcher.add_handler(HUG_HANDLER)
+dispatcher.add_handler(GBAM_HANDLER)
+dispatcher.add_handler(FLIRT_HANDLER)
 dispatcher.add_handler(GBUN_HANDLER)
 dispatcher.add_handler(TABLE_HANDLER)
 dispatcher.add_handler(RECITE_HANDLER)
