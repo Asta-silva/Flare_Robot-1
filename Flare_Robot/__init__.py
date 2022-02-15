@@ -3,6 +3,7 @@ import os
 import sys
 import time
 import spamwatch
+from redis import StrictRedis
 from pyrogram import Client, errors
 import telegram.ext as tg
 from telethon import TelegramClient
@@ -189,6 +190,16 @@ else:
     except:
         sw = None
         LOGGER.warning("Can't connect to SpamWatch!")
+
+REDIS = StrictRedis.from_url(REDIS_URL, decode_responses=True)
+try:
+    REDIS.ping()
+    LOGGER.info("[Flare_Robot] Your redis server is now alive!")
+except BaseException:
+    raise Exception("[Flare_Robot] Your redis server is not alive, please check again.")
+finally:
+    REDIS.ping()
+    LOGGER.info("[Flare_Robot] Your redis server is now alive!")
 
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("flare", API_ID, API_HASH)
