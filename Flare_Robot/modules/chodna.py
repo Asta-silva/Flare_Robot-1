@@ -348,7 +348,7 @@ __mod_name__ = "Bans"
 
 BAN_HANDLER = CommandHandler(
     ["ban", "dban", "sban"],
-    ban,
+    "ban", chodvale,
     pass_args=True,
     filters=Filters.chat_type.groups,
     run_async=True,
@@ -361,7 +361,7 @@ TEMPBAN_HANDLER = CommandHandler(
     run_async=True,
 )
 KICK_HANDLER = CommandHandler(
-    "kick", kick, pass_args=True, filters=Filters.chat_type.groups, run_async=True
+    "kick", "kick", nikal, pass_args=True, filters=Filters.chat_type.groups, run_async=True
 )
 UNBAN_HANDLER = CommandHandler(
     "unban", unban, pass_args=True, filters=Filters.chat_type.groups, run_async=True
