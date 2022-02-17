@@ -11,8 +11,8 @@ from telegram import (
     Message,
 )
 
-from zeldris import dispatcher
-from zeldris.modules.disable import DisableAbleCommandHandler
+from Flare_Robot import dispatcher
+from Flare_Robot.modules.disable import DisableAbleCommandHandler
 
 info_btn = "More Information"
 prequel_btn = "⬅️ Prequel"
