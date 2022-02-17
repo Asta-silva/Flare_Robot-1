@@ -21,7 +21,7 @@ from Flare_Robot.modules.helper_funcs.chat_status import (
 )
 from Flare_Robot.modules.helper_funcs.extraction import extract_user_and_text
 from Flare_Robot.modules.helper_funcs.string_handling import extract_time
-from Flare_Robot.log_channel import loggable
+from Flare_Robot.modules.log_channel import loggable
 
 
 @connection_status
