@@ -25,6 +25,7 @@ from Flare_Robot.modules.helper_funcs.chat_status import (
     ADMIN_CACHE,
     connection_status,
     user_admin,
+    can_promote,
 )
 
 from Flare_Robot.modules.helper_funcs.extraction import (
@@ -232,7 +233,7 @@ def setchat_title(update: Update, context: CallbackContext):
         
 @connection_status
 @bot_admin
-@user_can_promote
+@can_promote
 @user_admin
 @loggable
 def promote(update: Update, context: CallbackContext) -> str:
@@ -313,7 +314,7 @@ def promote(update: Update, context: CallbackContext) -> str:
 
 @connection_status
 @bot_admin
-@user_can_promote
+@can_promote
 @user_admin
 @loggable
 def midpromote(update: Update, context: CallbackContext) -> str:
@@ -389,7 +390,7 @@ def midpromote(update: Update, context: CallbackContext) -> str:
 
 @connection_status
 @bot_admin
-@user_can_promote
+@can_promote
 @user_admin
 @loggable
 def lowpromote(update: Update, context: CallbackContext) -> str:
@@ -465,7 +466,7 @@ def lowpromote(update: Update, context: CallbackContext) -> str:
 
 @connection_status
 @bot_admin
-@user_can_promote
+@can_promote
 @user_admin
 @loggable
 def fullpromote(update: Update, context: CallbackContext) -> str:
@@ -631,7 +632,7 @@ async def lowdemote(dmod):
     
 @connection_status
 @bot_admin
-@user_can_promote
+@can_promote
 @user_admin
 @loggable
 def demote(update: Update, context: CallbackContext) -> str:
@@ -713,7 +714,7 @@ def refresh_admin(update, _):
 
 @connection_status
 @bot_admin
-@user_can_promote
+@can_promote
 @user_admin
 def set_title(update: Update, context: CallbackContext):
     bot = context.bot
