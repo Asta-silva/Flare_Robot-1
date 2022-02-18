@@ -1,16 +1,22 @@
 from telegram import Message
 from telegram.ext import MessageFilter
 
-from Flare_Robot import DEV_USERS
+from Flare_Robot import DEV_USERS, DRAGONS
 from Flare_Robot import DEMONS as SUPPORT_USERS
 
 
-class CustomFilters(object):
+class CustomFilters:
     class _Supporters(MessageFilter):
         def filter(self, message: Message):
-            return bool(message.from_user and message.from_user.id in SUPPORT_USERS)
+            return bool(message.from_user and message.from_user.id in DEMONS)
 
     support_filter = _Supporters()
+
+    class _Sudoers(MessageFilter):
+        def filter(self, message: Message):
+            return bool(message.from_user and message.from_user.id in DRAGONS)
+
+    sudo_filter = _Sudoers()
 
     class _Developers(MessageFilter):
         def filter(self, message: Message):
@@ -25,7 +31,7 @@ class CustomFilters(object):
 
         def filter(self, message: Message):
             return bool(
-                message.document and message.document.mime_type == self.mime_type
+                message.document and message.document.mime_type == self.mime_type,
             )
 
     mime_type = _MimeType
@@ -37,7 +43,7 @@ class CustomFilters(object):
                 or message.sticker
                 or message.photo
                 or message.document
-                or message.video
+                or message.video,
             )
 
     has_text = _HasText()
