@@ -22,7 +22,7 @@ from Flare_Robot.modules.helper_funcs.admin_rights import (
 )
 
 from Flare_Robot.modules.helper_funcs.chat_status import (
-    is_bot_admin,
+    bot_admin,
     connection_status,
 )
 
