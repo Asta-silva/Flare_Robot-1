@@ -26,6 +26,7 @@ from Flare_Robot.modules.helper_funcs.chat_status import (
     connection_status,
     user_admin,
     can_promote,
+    can_pin,
 )
 
 from Flare_Robot.modules.helper_funcs.extraction import (
