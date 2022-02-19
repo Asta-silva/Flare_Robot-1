@@ -8,6 +8,7 @@ pyrate-limiter==2.4.7
 lxml==4.6.4
 nltk==3.6.5
 pillow>=4.2.0
+hurry.filesize
 pretty-errors==1.2.24
 psutil==5.8.0
 pynewtonmath==1.0.1
