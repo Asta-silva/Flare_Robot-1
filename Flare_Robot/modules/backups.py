@@ -18,7 +18,7 @@ import Flare_Robot.modules.sql.notes_sql as sql
 
 # from Flare_Robot.modules.rules import get_rules
 import Flare_Robot.modules.sql.rules_sql as rulessql
-from Flare_Robot import dispatcher, LOGGER, OWNER_ID, MESSAGE_DUMP
+from Flare_Robot import dispatcher, LOGGER, OWNER_ID, EVENT_LOGS
 from Flare_Robot.__main__ import DATA_IMPORT
 from Flare_Robot.modules.connection import connected
 from Flare_Robot.modules.helper_funcs.alternate import typing_action
@@ -338,13 +338,13 @@ def export_data(update: Update, context: CallbackContext):
         },
     }
     baccinfo = json.dumps(backup, indent=4)
-    with open("Zeldris{}.backup".format(chat_id), "w") as f:
+    with open("Flare_Robot{}.backup".format(chat_id), "w") as f:
         f.write(str(baccinfo))
     context.bot.sendChatAction(current_chat_id, "upload_document")
     tgl = time.strftime("%H:%M:%S - %d/%m/%Y", time.localtime(time.time()))
     try:
         context.bot.sendMessage(
-            MESSAGE_DUMP,
+            EVENT_LOGS,
             "*Successfully imported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`".format(
                 chat.title, chat_id, tgl
             ),
@@ -354,7 +354,7 @@ def export_data(update: Update, context: CallbackContext):
         pass
     context.bot.sendDocument(
         current_chat_id,
-        document=open("Zeldris{}.backup".format(chat_id), "rb"),
+        document=open("Flare_Robot{}.backup".format(chat_id), "rb"),
         caption="*Successfully Exported backup:*\nChat: `{}`\nChat ID: `{}`\nOn: `{}`\n\nNote: This `Zeldris-Backup` "
         "was specially made for notes.".format(
             chat.title,
@@ -365,7 +365,7 @@ def export_data(update: Update, context: CallbackContext):
         reply_to_message_id=msg.message_id,
         parse_mode=ParseMode.MARKDOWN,
     )
-    os.remove("Zeldris{}.backup".format(chat_id))  # Cleaning file
+    os.remove("Flare_Robot{}.backup".format(chat_id))  # Cleaning file
 
 
 # Temporary data
