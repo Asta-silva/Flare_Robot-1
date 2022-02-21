@@ -32,7 +32,7 @@ from Flare_Robot import (
     DEMONS as SUPPORT_USERS,
     WOLVES as WHITELIST_USERS,
     WALL_API,
-    se as spamwtc,
+    sw as spamwtc,
 )
 from Flare_Robot.__main__ import STATS, USER_INFO, GDPR
 from Flare_Robot.modules.disable import DisableAbleCommandHandler
