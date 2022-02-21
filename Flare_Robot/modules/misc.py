@@ -30,7 +30,7 @@ from Flare_Robot import (
     OWNER_ID,
     DEV_USERS,
     DEMONS as SUPPORT_USERS,
-    WHITELIST_USERS,
+    WOLVES as WHITELIST_USERS,
     WALL_API,
     spamwtc,
 )
