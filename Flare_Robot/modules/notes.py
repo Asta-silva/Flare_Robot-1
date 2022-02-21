@@ -23,7 +23,7 @@ from telegram.ext import (
 from telegram.utils.helpers import mention_html
 
 import Flare_Robot.modules.sql.notes_sql as sql
-from Flare_Robot import dispatcher, MESSAGE_DUMP, LOGGER
+from Flare_Robot import dispatcher, EVENT_LOGS, LOGGER
 from Flare_Robot.modules.connection import connected
 from Flare_Robot.modules.disable import DisableAbleCommandHandler
 from Flare_Robot.modules.helper_funcs.alternate import typing_action
@@ -81,11 +81,11 @@ def get(bot, update, notename, show_none=True, no_format=False):
             reply_id = message.message_id
 
         if note.is_reply:
-            if MESSAGE_DUMP:
+            if EVENT_LOGS:
                 try:
                     bot.forward_message(
                         chat_id=update.effective_chat.id,
-                        from_chat_id=MESSAGE_DUMP,
+                        from_chat_id=EVENT_LOGS,
                         message_id=note.value,
                     )
                 except BadRequest as excp:
