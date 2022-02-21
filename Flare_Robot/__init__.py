@@ -201,6 +201,7 @@ finally:
     REDIS.ping()
     LOGGER.info("[Flare_Robot] Your redis server is now alive!")
 
+client = TelegramClient(MemorySession(), API_ID, API_HASH)
 updater = tg.Updater(TOKEN, workers=WORKERS, use_context=True)
 telethn = TelegramClient("flare", API_ID, API_HASH)
 dispatcher = updater.dispatcher
