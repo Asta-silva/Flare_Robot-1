@@ -7,6 +7,7 @@ from redis import StrictRedis
 from pyrogram import Client, errors
 import telegram.ext as tg
 from telethon import TelegramClient
+from telethon.sessions import MemorySession
 from motor.motor_asyncio import AsyncIOMotorClient as MongoClient
 
 StartTime = time.time()
