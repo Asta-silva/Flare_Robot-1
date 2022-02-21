@@ -12,10 +12,10 @@ from Flare_Robot import (
     OWNER_ID,
     DEV_USERS,
     DRAGONS,
-    SUPPORT_USERS,
+    DEMONS as SUPPORT_USERS,
     STRICT_GBAN,
-    MESSAGE_DUMP,
-    spamwtc,
+    EVENT_LOGS,
+    sw as spamwtc,
 )
 from Flare_Robot.modules.helper_funcs.alternate import typing_action, send_action
 from Flare_Robot.modules.helper_funcs.chat_status import user_admin, is_user_admin
@@ -146,7 +146,7 @@ def gban(update: Update, context: CallbackContext):
             )
 
             context.bot.sendMessage(
-                MESSAGE_DUMP,
+                EVENT_LOGS,
                 "<b>Global Ban Reason Update</b>"
                 "\n<b>Sudo Admin:</b> {}"
                 "\n<b>User:</b> {}"
@@ -193,7 +193,7 @@ def gban(update: Update, context: CallbackContext):
     reason = f"{reason} // GBanned by {bannername} banner id: {bannerid}"
 
     context.bot.sendMessage(
-        MESSAGE_DUMP,
+        EVENT_LOGS,
         "<b>New Global Ban</b>"
         "\n#GBAN"
         "\n<b>Status:</b> <code>Enforcing</code>"
@@ -241,7 +241,7 @@ def ungban(update: Update, context: CallbackContext):
     )
 
     context.bot.sendMessage(
-        MESSAGE_DUMP,
+        EVENT_LOGS,
         "<b>Regression of Global Ban</b>"
         "\n#UNGBAN"
         "\n<b>Status:</b> <code>Ceased</code>"
@@ -281,7 +281,7 @@ def ungban(update: Update, context: CallbackContext):
     sql.ungban_user(user_id)
 
     context.bot.sendMessage(
-        MESSAGE_DUMP,
+        EVENT_LOGS,
         "User {} has been successfully un-gbanned!".format(
             mention_html(user_chat.id, user_chat.first_name)
         ),
