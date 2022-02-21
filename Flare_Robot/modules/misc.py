@@ -590,16 +590,3 @@ dispatcher.add_handler(STAFFLIST_HANDLER)
 dispatcher.add_handler(REDDIT_MEMES_HANDLER)
 dispatcher.add_handler(SRC_HANDLER)
 dispatcher.add_handler(PASTE_HANDLER)
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
