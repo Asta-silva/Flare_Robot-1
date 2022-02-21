@@ -8,8 +8,8 @@ from Flare_Robot import (DEV_USERS, OWNER_ID, DRAGONS,
                           TIGERS, dispatcher)
 from Flare_Robot.modules.helper_funcs.chat_status import (dev_plus, sudo_plus,
                                                            whitelist_plus)
-from Flare_Robot import SUPPORT_USERS as DEMONS
-from Flare_Robot import WHITELIST_USERS as WOLVES
+from Flare_Robot import DEMONS
+from Flare_Robot import WOLVES
 from Flare_Robot.modules.helper_funcs.extraction import extract_user
 from Flare_Robot.modules.log_channel import gloggable
 from telegram import ParseMode, TelegramError, Update
