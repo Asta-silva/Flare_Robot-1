@@ -29,7 +29,7 @@ from Flare_Robot import (
     dispatcher,
     OWNER_ID,
     DEV_USERS,
-    SUPPORT_USERS,
+    DEMONS as SUPPORT_USERS,
     WHITELIST_USERS,
     WALL_API,
     spamwtc,
