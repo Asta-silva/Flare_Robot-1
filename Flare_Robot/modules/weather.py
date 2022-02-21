@@ -136,16 +136,3 @@ __mod_name__ = "Weather"
 WEATHER_HANDLER = DisableAbleCommandHandler("weather", weather, pass_args=True)
 
 dispatcher.add_handler(WEATHER_HANDLER)
-© 2022 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Loading complete
