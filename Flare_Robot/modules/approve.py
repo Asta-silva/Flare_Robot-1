@@ -1,6 +1,6 @@
 import html
 
-import Cutiepii_Robot.modules.redis.approvals_redis as redis
+import Flare_Robot.modules.redis.approvals_redis as redis
 
 from Flare_Robot.modules.disable import DisableAbleCommandHandler
 from Flare_Robot import dispatcher, DRAGONS
