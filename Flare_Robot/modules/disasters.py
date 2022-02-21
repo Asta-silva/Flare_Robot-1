@@ -699,7 +699,7 @@ Group admins/group owners do not need these commands.
 Visit @Freia_Support for more information.
 """
 
-DEV_HANDLER = CommandHandler(("addpro", "addheal"), addpiro, run_async=True)
+DEV_HANDLER = CommandHandler(("addpro", "addheal"), addpro, run_async=True)
 SUDO_HANDLER = CommandHandler(("addsudo", "addknight"), addsudo, run_async=True)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "addattack"), addsupport, run_async=True)
 TIGER_HANDLER = CommandHandler(("adddefend"), addtiger, run_async=True)
