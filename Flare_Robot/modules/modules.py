@@ -13,7 +13,7 @@ from Flare_Robot.__main__ import (
     USER_INFO,
     USER_SETTINGS,
 )
-from Cutiepii_Robot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
+from Flare_Robot.modules.helper_funcs.chat_status import dev_plus, sudo_plus
 from telegram import ParseMode, Update
 from telegram.ext import CallbackContext, CommandHandler, run_async
 
