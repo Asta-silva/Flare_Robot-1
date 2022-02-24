@@ -14,12 +14,6 @@ from telethon import *
 
 from Flare_Robot import DRAGONS, dispatcher, telethn as bot
 from Flare_Robot.modules.disable import DisableAbleCommandHandler
-from Flare_Robot.modules.helper_funcs.admin_rights import (
-    user_can_changeinfo,
-    user_can_pin,
-    user_can_promote,
-)
-
 from Flare_Robot.modules.helper_funcs.chat_status import (
     bot_admin,
     ADMIN_CACHE,
@@ -27,6 +21,9 @@ from Flare_Robot.modules.helper_funcs.chat_status import (
     user_admin,
     can_promote,
     can_pin,
+    user_can_changeinfo,
+    user_can_pin,
+    user_can_promote,
 )
 
 from Flare_Robot.modules.helper_funcs.extraction import (
