@@ -1,22 +1,3 @@
-Skip to content
-Asta-silva
-/
-CutiepiiRobot
-Public
-forked from Awesome-RJ/CutiepiiRobot
-Code
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-CutiepiiRobot/Cutiepii_Robot/modules/helper_funcs/chat_status.py
-@Asta-silva
-Asta-silva Update chat_status.py
- 4 contributors
-431 lines (338 sloc)  13.7 KB
 from time import perf_counter
 from functools import wraps
 from cachetools import TTLCache
