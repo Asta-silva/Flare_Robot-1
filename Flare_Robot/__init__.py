@@ -223,15 +223,15 @@ print("Telegraph Account Creating")
 telegraph.create_account(short_name='Flare')        
 print("TELETHON CLIENT STARTING")
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
-dispatcher = updater.dispatcher
-print("PYROGRAM CLIENT STARTING")
-session_name = TOKEN.split(":")[0]
-client = TelegramClient(MemorySession(), API_ID, API_HASH)
 updater = tg.Updater(
     TOKEN,
     workers=min(32, os.cpu_count() + 4),
     request_kwargs={"read_timeout": 10, "connect_timeout": 10},
 )
+dispatcher = updater.dispatcher
+print("PYROGRAM CLIENT STARTING")
+session_name = TOKEN.split(":")[0]
+client = TelegramClient(MemorySession(), API_ID, API_HASH)
 pgram = Client(
     session_name,
     api_id=API_ID,
