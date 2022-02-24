@@ -4,7 +4,7 @@ import subprocess
 import sys
 import asyncio
 
-from Flare_Robot import dispatcher, DEV_USERS, telethn, OWNER_ID
+from Flare_Robot import dispatcher, DEV_USERS, telethn, OWNER_ID, BOT_USERNAME
 from Flare_Robot.modules.helper_funcs.chat_status import dev_plus
 
 from contextlib import suppress
