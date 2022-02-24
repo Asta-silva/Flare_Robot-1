@@ -19,7 +19,7 @@ from Flare_Robot import (
     StartTime,
     telethn,
     updater,
-    pbot)
+    pgram as pbot)
 
 # needed to dynamically load modules
 # NOTE: Module order is not guaranteed, specify that in the config file!
