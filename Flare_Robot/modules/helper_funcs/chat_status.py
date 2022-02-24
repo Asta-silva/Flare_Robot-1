@@ -78,6 +78,15 @@ def is_user_admin(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
             return user_id in admin_list
 
 
+async def can_delete_messages(message):
+
+    if message.is_private:
+        return True
+    if message.chat.admin_rights:
+        return message.chat.admin_rights.delete_messages
+    return False
+
+
 def is_bot_admin(chat: Chat, bot_id: int, bot_member: ChatMember = None) -> bool:
     if chat.type == "private" or chat.all_members_are_administrators:
         return True
