@@ -2,7 +2,7 @@ import time
 
 from telethon import events
 from Flare_Robot import telethn
-from Flare_Robot.modules.helper_funcs.chatstatus import (
+from Flare_Robot.modules.helper_funcs.chat_status import (
     can_delete_messages,
     user_is_admin,
 )
