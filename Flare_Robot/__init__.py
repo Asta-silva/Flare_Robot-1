@@ -220,13 +220,18 @@ else:
 
 telegraph = Telegraph()
 print("Telegraph Account Creating")
-telegraph.create_account(short_name='Flare')
-updater = tg.Updater(token=TOKEN, base_url=BOT_API_URL, workers=WORKERS, request_kwargs={"read_timeout": 10, "connect_timeout": 10}, use_context=True)           
+telegraph.create_account(short_name='Flare')        
 print("TELETHON CLIENT STARTING")
 telethn = TelegramClient(MemorySession(), API_ID, API_HASH)
 dispatcher = updater.dispatcher
 print("PYROGRAM CLIENT STARTING")
 session_name = TOKEN.split(":")[0]
+client = TelegramClient(MemorySession(), API_ID, API_HASH)
+updater = tg.Updater(
+    TOKEN,
+    workers=min(32, os.cpu_count() + 4),
+    request_kwargs={"read_timeout": 10, "connect_timeout": 10},
+)
 pgram = Client(
     session_name,
     api_id=API_ID,
@@ -242,7 +247,7 @@ aiohttpsession = ClientSession()
 # ARQ Client
 print("[INFO]: INITIALIZING ARQ CLIENT")
 arq = ARQ("https://thearq.tech", "YIECCC-NAJARO-OLLREW-SJSRIP-ARQ", aiohttpsession)
-ubot = TelegramClient(StringSession(STRING_SESSION), APP_ID, APP_HASH)
+ubot = TelegramClient(StringSession(STRING_SESSION), API_ID, API_HASH)
 timeout = httpx.Timeout(40)
 http = httpx.AsyncClient(http2=True, timeout=timeout)
 
