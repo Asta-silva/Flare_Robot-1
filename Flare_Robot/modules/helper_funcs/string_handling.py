@@ -1,10 +1,12 @@
-import time
+
 import re
+import time
 from typing import Dict, List
 
 import bleach
-import emoji
 import markdown2
+import emoji
+
 from telegram import MessageEntity
 from telegram.utils.helpers import escape_markdown
 
@@ -18,13 +20,13 @@ MATCH_MD = re.compile(
     r"\*(.*?)\*|"
     r"_(.*?)_|"
     r"`(.*?)`|"
-    r"(?<!\\)(\[.*?])(\(.*?\))|"
-    r"(?P<esc>[*_`\[])"
+    r"(?<!\\)(\[.*?\])(\(.*?\))|"
+    r"(?P<esc>[*_`\[])",
 )
 
 # regex to find []() links -> hyperlinks/buttons
-LINK_REGEX = re.compile(r"(?<!\\)\[.+?]\((.*?)\)")
-BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)]\(buttonurl:/{0,2}(.+?)(:same)?\))")
+LINK_REGEX = re.compile(r"(?<!\\)\[.+?\]\((.*?)\)")
+BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
 
 
 def _selective_escape(to_parse: str) -> str:
@@ -85,36 +87,41 @@ def markdown_parser(
         end = ent.offset + offset + ent.length - 1  # end of entity
 
         # we only care about code, url, text links
-        if ent.type not in ("code", "url", "text_link"):
+        if ent.type in ("code", "url", "text_link"):
+            # count emoji to switch counter
+            count = _calc_emoji_offset(txt[:start])
+            start -= count
+            end -= count
+
+            # URL handling -> do not escape if in [](), escape otherwise.
+            if ent.type == "url":
+                if any(
+                    match.start(1) <= start and end <= match.end(1)
+                    for match in LINK_REGEX.finditer(txt)
+                ):
+                    continue
+                # else, check the escapes between the prev and last and forcefully escape the url to avoid mangling
+                else:
+                    # TODO: investigate possible offset bug when lots of emoji are present
+                    res += _selective_escape(txt[prev:start] or "") + escape_markdown(
+                        ent_text
+                    )
+
+            # code handling
+            elif ent.type == "code":
+                res += _selective_escape(txt[prev:start]) + "`" + ent_text + "`"
+
+            # handle markdown/html links
+            elif ent.type == "text_link":
+                res += _selective_escape(txt[prev:start]) + "[{}]({})".format(
+                    ent_text, ent.url
+                )
+
+            end += 1
+
+        # anything else
+        else:
             continue
-
-        # count emoji to switch counter
-        count = _calc_emoji_offset(txt[:start])
-        start -= count
-        end -= count
-
-        # URL handling -> do not escape if in [](), escape otherwise.
-        if ent.type == "url":
-            if any(
-                match.start(1) <= start and end <= match.end(1)
-                for match in LINK_REGEX.finditer(txt)
-            ):
-                continue
-            # TODO: investigate possible offset bug when lots of emoji
-            # are present
-            res += _selective_escape(txt[prev:start] or "") + escape_markdown(ent_text)
-
-        # code handling
-        elif ent.type == "code":
-            res += _selective_escape(txt[prev:start]) + "`" + ent_text + "`"
-
-        # handle markdown/html links
-        elif ent.type == "text_link":
-            res += _selective_escape(txt[prev:start]) + "[{}]({})".format(
-                ent_text, ent.url
-            )
-
-        end += 1
 
         prev = end
 
@@ -123,7 +130,7 @@ def markdown_parser(
 
 
 def button_markdown_parser(
-    txt: str, entities: Dict[MessageEntity, str] = None, offset: int = 0
+    txt: str, entities: Dict[MessageEntity, str] = None, offset: int = 0,
 ) -> (str, List):
     markdown_note = markdown_parser(txt, entities, offset)
     prev = 0
@@ -147,7 +154,7 @@ def button_markdown_parser(
         else:
             note_data += markdown_note[prev:to_check]
             prev = match.start(1) - 1
-
+        
     note_data += markdown_note[prev:]
 
     return note_data, buttons
@@ -156,30 +163,32 @@ def button_markdown_parser(
 def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
     new_text = ""
     idx = 0
-    v = []
     while idx < len(text):
         if text[idx] == "{":
             if idx + 1 < len(text) and text[idx + 1] == "{":
                 idx += 2
                 new_text += "{{{{"
                 continue
-            success = False
-            for v in valids:
-                if text[idx:].startswith("{" + v + "}"):
-                    success = True
-                    break
-            if success:
-                new_text += text[idx : idx + len(v) + 2]
-                idx += len(v) + 2
-                continue
-            new_text += "{{"
+            else:
+                success = False
+                for v in valids:
+                    if text[idx:].startswith("{" + v + "}"):
+                        success = True
+                        break
+                if success:
+                    new_text += text[idx : idx + len(v) + 2]
+                    idx += len(v) + 2
+                    continue
+                else:
+                    new_text += "{{"
 
         elif text[idx] == "}":
             if idx + 1 < len(text) and text[idx + 1] == "}":
                 idx += 2
                 new_text += "}}}}"
                 continue
-            new_text += "}}"
+            else:
+                new_text += "}}"
 
         else:
             new_text += text[idx]
@@ -188,40 +197,41 @@ def escape_invalid_curly_brackets(text: str, valids: List[str]) -> str:
     return new_text
 
 
+
 SMART_OPEN = "“"
 SMART_CLOSE = "”"
 START_CHAR = ("'", '"', SMART_OPEN)
 
 
 def split_quotes(text: str) -> List:
-    if not any(text.startswith(char) for char in START_CHAR):
-        return text.split(None, 1)
-    counter = 1  # ignore first char -> is some kind of quote
-    while counter < len(text):
-        if text[counter] == "\\":
+    if any(text.startswith(char) for char in START_CHAR):
+        counter = 1  # ignore first char -> is some kind of quote
+        while counter < len(text):
+            if text[counter] == "\\":
+                counter += 1
+            elif text[counter] == text[0] or (
+                text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
+            ):
+                break
             counter += 1
-        elif text[counter] == text[0] or (
-            text[0] == SMART_OPEN and text[counter] == SMART_CLOSE
-        ):
-            break
-        counter += 1
+        else:
+            return text.split(None, 1)
+
+        # 1 to avoid starting quote, and counter is exclusive so avoids ending
+        key = remove_escapes(text[1:counter].strip())
+        # index will be in range, or `else` would have been executed and returned
+        rest = text[counter + 1 :].strip()
+        if not key:
+            key = text[0] + text[0]
+        return list(filter(None, [key, rest]))
     else:
         return text.split(None, 1)
 
-    # 1 to avoid starting quote, and counter is exclusive so avoids ending
-    key = remove_escapes(text[1:counter].strip())
-    # index will be in range, or `else` would have been executed and
-    # returned
-    rest = text[counter + 1 :].strip()
-    if not key:
-        key = text[0] + text[0]
-    return list(filter(None, [key, rest]))
-
-
 def remove_escapes(text: str) -> str:
+    counter = 0
     res = ""
     is_escaped = False
-    for counter in range(len(text)):
+    while counter < len(text):
         if is_escaped:
             res += text[counter]
             is_escaped = False
@@ -229,6 +239,7 @@ def remove_escapes(text: str) -> str:
             is_escaped = True
         else:
             res += text[counter]
+        counter += 1
     return res
 
 
@@ -261,7 +272,9 @@ def extract_time(message, time_val):
             return ""
         return bantime
     message.reply_text(
-        "Invalid time type specified. Expected m,h, or d, got: {}".format(time_val[-1])
+        "Invalid time type specified. Expected m,h, or d, got: {}".format(
+            time_val[-1],
+        ),
     )
     return ""
 
@@ -272,7 +285,5 @@ def markdown_to_html(text):
     text = text.replace("~", "~~")
     _html = markdown2.markdown(text, extras=["strike", "underline"])
     return bleach.clean(
-        _html,
-        tags=["strong", "em", "a", "code", "pre", "strike", "u"],
-        strip=True,
+        _html, tags=["strong", "em", "a", "code", "pre", "strike", "u"], strip=True,
     )[:-1]
