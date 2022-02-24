@@ -24,6 +24,18 @@ THREAD_LOCK = RLock()
 def is_whitelist_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return any(user_id in user for user in [WOLVES, TIGERS, DEMONS, DRAGONS, DEV_USERS])
 
+async def user_is_admin(user_id: int, message):
+    status = False
+    if message.is_private:
+        return True
+
+    async for user in telethn.iter_participants(
+        message.chat_id, filter=ChannelParticipantsAdmins,
+    ):
+        if user_id == user.id or user_id in DRAGONS:
+            status = True
+            break
+    return status
 
 def is_support_plus(chat: Chat, user_id: int, member: ChatMember = None) -> bool:
     return user_id in DEMONS or user_id in DRAGONS or user_id in DEV_USERS
