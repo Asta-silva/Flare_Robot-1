@@ -1,6 +1,6 @@
 import Flare_Robot.modules.sql.blacklistusers_sql as sql
 
-from FlareRobot import ALLOW_EXCL
+from Flare_Robot import ALLOW_EXCL
 from Flare_Robot import DEV_USERS, DRAGONS, DEMONS, TIGERS, WOLVES
 
 from telegram import Update
