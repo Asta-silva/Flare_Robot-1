@@ -1,8 +1,6 @@
+from Flare_Robot import DEV_USERS, DRAGONS, DEMONS
 from telegram import Message
 from telegram.ext import MessageFilter
-
-from Flare_Robot import DEV_USERS, DRAGONS
-from Flare_Robot import DEMONS as SUPPORT_USERS
 
 
 class CustomFilters:
