@@ -1,7 +1,7 @@
 import sys
 import traceback
 from functools import wraps
-from Flare_Robot import pbot, EVENT_LOGS
+from Flare_Robot import pgram, SUPPORT_CHAT
 from pyrogram.errors.exceptions.forbidden_403 import ChatWriteForbidden
 
 
@@ -18,8 +18,8 @@ def split_limits(text):
         else:
             result.append(small_msg)
             small_msg = line
-    else:
-        result.append(small_msg)
+        
+    result.append(small_msg)
 
     return result
 
@@ -30,7 +30,7 @@ def capture_err(func):
         try:
             return await func(client, message, *args, **kwargs)
         except ChatWriteForbidden:
-            await pbot.leave_chat(message.chat.id)
+            await pgram.leave_chat(message.chat.id)
             return
         except Exception as err:
             exc_type, exc_obj, exc_tb = sys.exc_info()
@@ -46,8 +46,8 @@ def capture_err(func):
                 ),
             )
             for x in error_feedback:
-                await pbot.send_message(
-                    EVENT_LOGS,
+                await pgram.send_message(
+                    SUPPORT_CHAT,
                     x
                 )
             raise err
