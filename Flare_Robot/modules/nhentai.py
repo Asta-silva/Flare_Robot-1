@@ -7,7 +7,7 @@ from pyrogram.types import (InlineKeyboardMarkup,
                             InputTextMessageContent
                             )
 
-from Flare_Robot import pgram, telegraph
+from Flare_Robot import pgram, telegraph, BOT_USERNAME
 from Flare_Robot.utils.errors import capture_err
 
 
