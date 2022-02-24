@@ -29,7 +29,7 @@ from Flare_Robot import (
     DEMONS,
     LOGGER,
     OWNER_ID,
-    sw,
+    sw as spamwtc,
     dispatcher,
 )
 from Flare_Robot.modules.helper_funcs.chat_status import (
