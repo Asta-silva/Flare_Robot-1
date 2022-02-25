@@ -462,6 +462,7 @@ def lowpromote(update: Update, context: CallbackContext) -> str:
     return log_message
 
 
+
 @connection_status
 @bot_admin
 @can_promote
@@ -543,6 +544,7 @@ def fullpromote(update: Update, context: CallbackContext) -> str:
     )
 
     return log_message
+
 
 @bot.on(events.NewMessage(pattern="/middemote(?: |$)(.*)"))
 async def middemote(dmod):
