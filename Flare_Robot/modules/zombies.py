@@ -1,3 +1,4 @@
+import asyncio
 from asyncio import sleep
 
 from telethon import events
@@ -6,7 +7,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins
 
 from Flare_Robot import telethn, OWNER_ID, DEV_USERS, DRAGONS, DEMONS
-frmon Flare_Robot.modules.helper_funcs.chat_status import is_user_admin as is_administrator
+
 # =================== CONSTANT ===================
 
 BANNED_RIGHTS = ChatBannedRights(
@@ -35,7 +36,17 @@ UNBAN_RIGHTS = ChatBannedRights(
 
 OFFICERS = [OWNER_ID] + DEV_USERS + DRAGONS + DEMONS
 
-is_administrator = user_admin
+# Check if user has admin rights
+async def is_administrator(user_id: int, message):
+    admin = False
+    async for user in telethn.iter_participants(
+        message.chat_id, filter=ChannelParticipantsAdmins
+    ):
+        if user_id == user.id or user_id in OFFICERS:
+            admin = True
+            break
+    return admin
+
 
 
 @telethn.on(events.NewMessage(pattern=f"^[!/]zombies ?(.*)"))
@@ -100,10 +111,3 @@ async def zombies(event):
         \n`{del_a}` Zombie Admin Accounts Are Not Removed!"
 
     await cleaning_zombies.edit(del_status)
-
-__help__ = """
-  ADMINS ONLY
-  • `/zombies` :- searches deleted accounts
-  • `/zombies clean` :- removes deleted accounts from the group.
-"""
-__mod_name__ = "Zombies"
