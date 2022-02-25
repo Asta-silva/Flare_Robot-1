@@ -1,3 +1,4 @@
+import telethn
 from time import perf_counter
 from functools import wraps
 from cachetools import TTLCache
