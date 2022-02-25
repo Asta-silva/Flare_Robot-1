@@ -6,7 +6,7 @@ from telethon.tl.functions.channels import EditBannedRequest
 from telethon.tl.types import ChatBannedRights, ChannelParticipantsAdmins
 
 from Flare_Robot import telethn, OWNER_ID, DEV_USERS, DRAGONS, DEMONS
-
+frmon Flare_Robot.modules.helper_funcs.chat_status import is_user_admin as is_administrator
 # =================== CONSTANT ===================
 
 BANNED_RIGHTS = ChatBannedRights(
@@ -35,17 +35,7 @@ UNBAN_RIGHTS = ChatBannedRights(
 
 OFFICERS = [OWNER_ID] + DEV_USERS + DRAGONS + DEMONS
 
-# Check if user has admin rights
-async def is_administrator(user_id: int, message):
-    admin = False
-    async for user in telethn.iter_participants(
-        message.chat_id, filter=ChannelParticipantsAdmins
-    ):
-        if user_id == user.id or user_id in OFFICERS:
-            admin = True
-            break
-    return admin
-
+is_administrator = user_admin
 
 
 @telethn.on(events.NewMessage(pattern=f"^[!/]zombies ?(.*)"))
