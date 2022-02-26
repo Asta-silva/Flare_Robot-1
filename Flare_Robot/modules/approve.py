@@ -45,7 +45,7 @@ def approve(update, context):
         return ""
     redis.approve(message.chat_id, user_id)
     message.reply_text(
-        f"[{member.user['first_name']}](tg://user?id={member.user['id']}) has been approved in {chat_title}! They will now be ignored by admin actions like locks, blacklists, warns, bans, mutes, kicks and antiflood",
+        f"[{member.user['first_name']}](tg://user?id={member.user['id']}) has been approved in {chat_title}! They will now be ignored by the admins Sexy actions like locks, blacklists, warns, bans, mutes, kicks and antiflood",
         parse_mode=ParseMode.MARKDOWN,
     )
     log_message = (
