@@ -10,21 +10,17 @@ async def handler(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.reply("Provide Some Text To Draw! And Reply To Image/Stickers EXAMPLE: /mmf text")
+        await event.reply("`Provide Some Text To Draw! And Reply To Image/Stickers EXAMPLE: /mmf text`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
-        await event.reply("
-Reply to a image/sticker.
-")
+        await event.reply("```Reply to a image/sticker.```")
         return
     file = await bot.download_media(reply_message)
-    msg = await event.reply("
-Memifying this image! (」ﾟﾛﾟ)｣ 
-")
+    msg = await event.reply("```Memifying this image! (」ﾟﾛﾟ)｣ ```")
     text = str(event.pattern_match.group(1)).strip()
     if len(text) < 1:
-        return await msg.edit("You might want to try /mmf text")
+        return await msg.edit("You might want to try `/mmf text`")
     meme = await drawText(file, text)
     await bot.send_file(event.chat_id, file=meme, force_document=False)
     await msg.delete()
@@ -43,7 +39,7 @@ async def drawText(image_path, text):
     if os.name == "nt":
         fnt = "ariel.ttf"
     else:
-        fnt = "./EruRobot/resources/default.ttf"
+        fnt = "./Flare_Robot/resources/default.ttf"
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
     if ";" in text:
         upper_text, lower_text = text.split(";")
@@ -111,7 +107,8 @@ async def drawText(image_path, text):
             draw.text(
                 xy=(
                     (i_width - u_width) / 2,
-                    (i_height - u_height - int((20 / 640) * i_width)) - 2,),
+                    (i_height - u_height - int((20 / 640) * i_width)) - 2,
+                ),
                 text=l_text,
                 font=m_font,
                 fill=(0, 0, 0),
