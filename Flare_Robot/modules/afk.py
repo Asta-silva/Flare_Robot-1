@@ -58,16 +58,16 @@ def no_longer_afk(update, context):
         firstname = update.effective_user.first_name
         try:
             options = [
-                "{} Is wasting his time in the chat!",
-                "The Dead {} Came Back From His Grave!",
-                "Welcome back {}! I hope you bought pizza",
-                "Good to hear from you again {}",
-                "{} Good job waking up now get ready for your classes!",
-                "Hey {}! Why weren't you online for such a long time?",
-                "{} why did you came back?",
+                "{} Is back to the Horny chat!",
+                "The babes {} Came Back From OyO!",
+                "Welcome back {}! I hope you bought Condoms",
+                "Good to hear the lewds thought from {}",
+                "{} Good job waking up now get ready for your Sexy Classes!",
+                "Hey {}! Why weren't you online for such a long time I'm this Sexy chat?",
+                "{} why did you came back? For girl right?",
                 "{} Is now back online!",
                 "OwO, Welcome back {}",
-                "Welcome to hell again {}",
+                "Welcome to OyO again {}",
                 "Whats poppin {}?",
             ]
             chosen_option = random.choice(options)
