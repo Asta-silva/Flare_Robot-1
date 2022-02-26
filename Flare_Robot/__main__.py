@@ -113,7 +113,6 @@ buttons = [
                    [
                        InlineKeyboardButton(text="[► Help ◄]", callback_data="help_back"),
                        InlineKeyboardButton(text="❔ Chit Chat", url="https://t.me/OtaKu_Gang1"),
-                       InlineKeyboardButton(text="[► Inline ◄]", switch_inline_query_current_chat=""),
                      ],
                     [                  
                        InlineKeyboardButton(
