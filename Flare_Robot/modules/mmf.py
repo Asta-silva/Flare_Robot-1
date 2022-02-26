@@ -37,17 +37,7 @@ async def drawText(image_path, text):
     shadowcolor = "black"
     i_width, i_height = img.size
     if os.name == "nt":
-        fnt = "ariel.ttf"
-    else:
-        fnt = "./Flare_Robot/resources/default.ttf"
-    m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
-    if ";" in text:
-        upper_text, lower_text = text.split(";")
-    else:
-        upper_text = text
-        lower_text = ""
-    draw = ImageDraw.Draw(img)
-    current_h, pad = 10, 5
+        font = ImageFont.load_default()
     if upper_text:
         for u_text in textwrap.wrap(upper_text, width=15):
             u_width, u_height = draw.textsize(u_text, font=m_font)
