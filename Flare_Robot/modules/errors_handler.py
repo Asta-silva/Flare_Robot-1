@@ -9,7 +9,7 @@ import requests
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import CallbackContext, CommandHandler
 
-from Flare_Robot import dispatcher, DEV_USERS, SUPPORT_CHAT
+from Flare_Robot import dispatcher, DEV_USERS, ERROR_LOGS
 
 pretty_errors.mono()
 
@@ -45,7 +45,7 @@ def error_callback(update: Update, context: CallbackContext):
         try:
             stringio = io.StringIO()
             pretty_errors.output_stderr = stringio
-            pretty_errors.excepthook(
+            output = pretty_errors.excepthook(
                 type(context.error),
                 context.error,
                 context.error.__traceback__,
@@ -79,31 +79,25 @@ def error_callback(update: Update, context: CallbackContext):
             update.effective_message.text if update.effective_message else "No message",
             tb,
         )
-        extension = "txt"
-        url = "https://spaceb.in/api/v1/documents/"
-        try:
-            response = requests.post(
-                url, data={"content": pretty_message, "extension": extension}
-            )
-        except Exception as e:
-            return {"error": str(e)}
-        response = response.json()
+        key = requests.post(
+            "https://nekobin.com/api/documents", json={"content": pretty_message}
+        ).json()
         e = html.escape(f"{context.error}")
-        if not response:
+        if not key.get("result", {}).get("key"):
             with open("error.txt", "w+") as f:
                 f.write(pretty_message)
             context.bot.send_document(
-                SUPPORT_CHAT,
+                ERROR_LOGS,
                 open("error.txt", "rb"),
                 caption=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
                 f"</b>\n<code>{e}</code>",
                 parse_mode="html",
             )
             return
-
-        url = f"https://spaceb.in/{response['payload']['id']}"
+        key = key.get("result").get("key")
+        url = f"https://nekobin.com/{key}.py"
         context.bot.send_message(
-            SUPPORT_CHAT,
+            ERROR_LOGS,
             text=f"#{context.error.identifier}\n<b>Your enemy's make an error for you, demon king:"
             f"</b>\n<code>{e}</code>",
             reply_markup=InlineKeyboardMarkup(
