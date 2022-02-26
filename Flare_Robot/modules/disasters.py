@@ -190,7 +190,7 @@ def addsupport(
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-        message.reply_text("This user is already a vanilla protaganist)"
+        message.reply_text("This user is already a vanilla protaganist")
         return ""
 
     if user_id in WOLVES:
@@ -205,7 +205,7 @@ def addsupport(
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + f"\n{user_member.first_name} was added as a Attacker!")
+        rt + f"\n{user_member.first_name} was added as a vanilla protaganist!")
 
     log_message = (
         f"#SUPPORT\n"
@@ -249,7 +249,7 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
         DEMONS.remove(user_id)
 
     if user_id in WOLVES:
-        message.reply_text("This user is already a Uglybastards)
+        message.reply_text("This user is already a Uglybastards")
         return ""
 
     data['whitelists'].append(user_id)
