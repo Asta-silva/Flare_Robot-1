@@ -9,21 +9,21 @@ from Flare_Robot.events import register
 from Flare_Robot import telethn as tbot
 
 
-PHOTO = "https://telegra.ph/file/6266d4d7ce030b8a7cf2d.jpg"
+PHOTO = "https://telegra.ph/file/675f680f89bbff56496e4.jpg"
 
 
 @register(pattern=("/alive"))
 async def awake(event):
-    TEXT = "**♡ I,m ғʟᴀʀᴇ ʀᴏʙᴏᴛ 愛** \n\n"
+    TEXT = "**♡ I,m ɴᴀᴛsᴜᴍᴇ ᴀ ʜᴏᴛʏ ʀᴏʙᴏᴛ 愛** \n\n"
     EXT += f"**♡ I'm Working With sᴇxʏ Speed** \n\n"
     TEXT += f"**♡ ғʟᴀʀᴇ: LATEST Version** \n\n"
-    TEXT += f"**♡ My Creator: [ ᴀsᴛᴀ](http://t.me/Asta_silva02)** \n\n"
-    TEXT += f"**♡ ᴀɴʏ ɪssᴜᴇs ᴄᴏɴᴛᴀᴄᴛ ʜᴇʀᴇ @Freia_Support** \n\n"
+    TEXT += f"**♡ My Creator: [ADITYA](http://t.me/adimanus)** \n\n"
+    TEXT += f"**♡ ᴀɴʏ ɪssᴜᴇs ᴄᴏɴᴛᴀᴄᴛ ʜᴇʀᴇ @natsumesupport** \n\n"
     TEXT += "**♡ ᴛʜᴀɴᴋ ʏᴏᴜ ғᴏʀ ᴀᴅᴅɪɴɢ ᴍᴇ 💘💘💘**"
     BUTTON = [
         [
-            Button.url("📢 Updates", "https://t.me/Freia_Updates"),
-            Button.url("🚑 Support", "https://t.me/Freia_Support"),
+            Button.url("📢 Updates", "https://t.me/natsumeupdates"),
+            Button.url("🚑 Support", "https://t.me/natsumesupport}"),
         ]
     ]
     await tbot.send_file(event.chat_id, PHOTO, caption=TEXT, buttons=BUTTON)
