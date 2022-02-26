@@ -1,8 +1,8 @@
 import textwrap
 import os
 from PIL import Image, ImageFont, ImageDraw
-from EruRobot.events import register
-from EruRobot import LOGGER, TEMP_DOWNLOAD_DIRECTORY, telethn as bot
+from Flare_Robot.events import register
+from Flare_Robot import LOGGER, TEMP_DOWNLOAD_DIRECTORY, telethn as bot
 
 
 @register(pattern="^/mmf ?(.*)")
