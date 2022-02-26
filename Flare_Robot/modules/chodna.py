@@ -77,23 +77,23 @@ def ban(update: Update, context: CallbackContext) -> str:
 
     if is_user_ban_protected(chat, user_id, member) and user not in DEV_USERS:
         if user_id == OWNER_ID:
-            message.reply_text("Trying to put me against a Master huh?")
+            message.reply_text("Trying to put me against a Hentai god huh?")
         elif user_id in DEV_USERS:
-            message.reply_text("I can't act against our own.")
+            message.reply_text("I can't act against our Hentai protaganist.")
         elif user_id in DRAGONS:
             message.reply_text(
-                "Fighting this Bersekser here will put user lives at risk."
+                "Fighting this Doujin protaganist here will put user lives at risk."
             )
         elif user_id in DEMONS:
             message.reply_text(
-                "Bring an order from Master Servant to fight a Assasin servant."
+                "Bring an order from Hentai god to fight a vanilla protaganist."
             )
         elif user_id in TIGERS:
             message.reply_text(
-                "Bring an order from Master Servant to fight a Lancer servant."
+                "Bring an order from Hentai god to fight a NTR protaganist."
             )
         elif user_id in WOLVES:
-            message.reply_text("Rider abilities make them ban immune!")
+            message.reply_text("Uglybastards abilities make them ban immune!")
         else:
             message.reply_text("This user has immunity and cannot be banned.")
         return log_message
@@ -395,7 +395,7 @@ def punchme(update: Update, context: CallbackContext):
 
     res = update.effective_chat.unban_member(user_id)  # unban on current user = kick
     if res:
-        update.effective_message.reply_text("*punches you out of the group*")
+        update.effective_message.reply_text("*punches you out of the Sexy group*")
     else:
         update.effective_message.reply_text("Huh? I can't :/")
 
@@ -562,9 +562,9 @@ __help__ = """
 """
 
 
-BAN_HANDLER = CommandHandler(["ban", "sban", "fuckyou", "chudvale"], ban, run_async=True)
+BAN_HANDLER = CommandHandler(["ban", "sban", "fuckyou", "fuckoff"], ban, run_async=True)
 TEMPBAN_HANDLER = CommandHandler(["tban"], temp_ban, run_async=True)
-KICK_HANDLER = CommandHandler(["kick", "punch", "nikal", "bhkk"], punch, run_async=True)
+KICK_HANDLER = CommandHandler(["kick", "punch", "nikal"], punch, run_async=True)
 UNBAN_HANDLER = CommandHandler("unban", unban, run_async=True)
 ROAR_HANDLER = CommandHandler("roar", selfunban, run_async=True)
 UNBAN_BUTTON_HANDLER = CallbackQueryHandler(unbanb_btn, pattern=r"unbanb_")
