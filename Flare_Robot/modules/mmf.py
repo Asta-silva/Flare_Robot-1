@@ -1,10 +1,8 @@
-from PIL import Image, ImageFont, ImageDraw
 import textwrap
 import os
-from Flare_Robot.events import register
-from Flare_Robot import LOGGER, TEMP_DOWNLOAD_DIRECTORY
-
-from Flare_Robot import telethn as bot
+from PIL import Image, ImageFont, ImageDraw
+from EruRobot.events import register
+from EruRobot import LOGGER, TEMP_DOWNLOAD_DIRECTORY, telethn as bot
 
 
 @register(pattern="^/mmf ?(.*)")
@@ -12,9 +10,7 @@ async def handler(event):
     if event.fwd_from:
         return
     if not event.reply_to_msg_id:
-        await event.reply(
-            "Provide Some Text To Draw! And Reply To Image/Stickers EXAMPLE: /mmf text"
-        )
+        await event.reply("`Provide Some Text To Draw! And Reply To Image/Stickers EXAMPLE: /mmf text`")
         return
     reply_message = await event.get_reply_message()
     if not reply_message.media:
@@ -43,7 +39,7 @@ async def drawText(image_path, text):
     if os.name == "nt":
         fnt = "ariel.ttf"
     else:
-        fnt = "./AsunaRobot/resources/Maghrib.ttf"
+        fnt = "./EruRobot/resources/default.ttf"
     m_font = ImageFont.truetype(fnt, int((70 / 640) * i_width))
     if ";" in text:
         upper_text, lower_text = text.split(";")
@@ -141,6 +137,3 @@ async def drawText(image_path, text):
     webp_file = os.path.join(image_name)
     img.save(webp_file, "webp")
     return webp_file
-
-
-__mod_name__ = "mmf"
