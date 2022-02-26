@@ -90,7 +90,7 @@ PM_START_TEXT = """
 """
 
 HELP_STRINGS = """
-Hey there, I'm Flare Robot !
+Hey there, I'm sexy Robot !
 To make me functional, make sure that i have enough rights in your group.
 Helpful commands:
 - /start: Starts me! You've probably already used this.
@@ -107,7 +107,7 @@ List of all the Modules:
 buttons = [
     [
                         InlineKeyboardButton(
-                            text=f"Add Flare To Your Group",
+                            text=f"Add Natsume To Your Group",
                             url=f"https://telegram.dog/Flare_Robot?startgroup=true")
                     ],
                    [
