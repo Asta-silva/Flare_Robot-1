@@ -190,7 +190,7 @@ def addsupport(
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-        message.reply_text("This user is already a vanilla protaganist)
+        message.reply_text("This user is already a vanilla protaganist)"
         return ""
 
     if user_id in WOLVES:
