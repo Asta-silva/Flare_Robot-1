@@ -73,7 +73,7 @@ def get_readable_time(seconds: int) -> str:
 
     return ping_time
 
-GROUP_START_IMG = "https://telegra.ph/file/2cd6f97e0cf04d63cabf4.mp4"
+GROUP_START_IMG = "https://telegra.ph/file/a99a98d1513236afb2590.mp4"
 
 FLARE_PHOTO = "https://telegra.ph/file/2a171330f0ad1fc02465c.jpg"
 
@@ -86,7 +86,7 @@ PM_START_TEXT = """
 ➷ *Uptime:* `{}`
 [•°•°•°•°•°•°•°•°•°•°•°]
 ♛┈⛧✾✾✾┈┈•༶༶•┈┈⛧✾✾✾┈♛
-➹ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/852e96d6c59f2ccad32df.jpg) ××
+➹ Try The Help Buttons Below To Know My Abilities[.](https://telegra.ph/file/675f680f89bbff56496e4.jpg) ××
 """
 
 HELP_STRINGS = """
@@ -200,7 +200,7 @@ def test(update: Update, context: CallbackContext):
     print(update.effective_message)
 
 
-@telethn.on(events.NewMessage(pattern="/check"))
+@telethn.on(events.NewMessage(pattern="/flare"))
 async def awake(event):
   ғʟᴀʀᴇ = event.sender.first_name
   ғʟᴀʀᴇ = "**♡ I,m ғʟᴀʀᴇ ʀᴏʙᴏᴛ 愛** \n\n"
