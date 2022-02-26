@@ -15,7 +15,7 @@ PHOTO = "https://telegra.ph/file/4c228ed665f2885859c19.mp4"
 @register(pattern=("/alive"))
 async def awake(event):
     TEXT = "**♡ I,m ɴᴀᴛsᴜᴍᴇ ᴀ ʜᴏᴛʏ ʀᴏʙᴏᴛ 愛** \n\n"
-    EXT += f"**♡ I'm Working With sᴇxʏ Speed** \n\n"
+    TEXT += f"**♡ I'm Working With sᴇxʏ Speed** \n\n"
     TEXT += f"**♡ ғʟᴀʀᴇ: LATEST Version** \n\n"
     TEXT += f"**♡ My Creator: [ADITYA](http://t.me/adimanus)** \n\n"
     TEXT += f"**♡ ᴀɴʏ ɪssᴜᴇs ᴄᴏɴᴛᴀᴄᴛ ʜᴇʀᴇ @natsumesupport** \n\n"
