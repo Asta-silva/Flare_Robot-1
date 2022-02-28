@@ -702,7 +702,7 @@ Visit @Freia_Support for more information.
 DEV_HANDLER = CommandHandler(("addpro", "addking"), addpro, run_async=True)
 SUDO_HANDLER = CommandHandler(("addsudo", "adddrag"), addsudo, run_async=True)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport, run_async=True)
-TIGER_HANDLER = CommandHandler(("addangel"), addtiger, run_async=True)
+TIGER_HANDLER = CommandHandler(("addtiger", "addangel"), addtiger, run_async=True)
 WHITELIST_HANDLER = CommandHandler(("addcommon", "addwolf"), addwhitelist, run_async=True)
 
 RMPIRO_HANDLER = CommandHandler(("rmking", "rmpro"), rmpro, run_async=True)
