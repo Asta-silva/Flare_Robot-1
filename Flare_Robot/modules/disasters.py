@@ -67,20 +67,20 @@ def addpro(update: Update, context: CallbackContext) -> str:
         data = json.load(infile)
 
     if int(user_id) in DEV_USERS:
-        message.reply_text("This member is already a Hentai protaganist")
+        message.reply_text("This member is already a Hentai king")
 
     if user_id in DRAGONS:
-        rt += "Requested to promote a Doujin protaganist to Hentai protaganist."
+        rt += "Requested to promote a Dragon to Hentai king."
         data['sudos'].remove(user_id)
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-        rt += "Requested to promote a vanilla protaganist to Hentai protaganist."
+        rt += "Requested to promote a Demon to Hentai King."
         data['supports'].remove(user_id)
         DEMONS.remove(user_id)
 
     if user_id in WOLVES:
-        rt += "Requested to promote a Uglybastards to Hentai protaganist."
+        rt += "Requested to promote a Commoner to Hentai King."
         data['whitelists'].remove(user_id)
         WOLVES.remove(user_id)
 
@@ -91,7 +91,7 @@ def addpro(update: Update, context: CallbackContext) -> str:
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + "\nSuccessfully set Disaster level of {} to Hentai protaganist!".format(
+        rt + "\nSuccessfully set Disaster level of {} to Hentai King!".format(
             user_member.first_name))
 
     log_message = (
@@ -127,16 +127,16 @@ def addsudo(update: Update, context: CallbackContext) -> str:
         data = json.load(infile)
 
     if user_id in DRAGONS:
-        message.reply_text("This member is already a Doujin protaganist")
+        message.reply_text("This member is already a Hentai Dragon")
         return ""
 
     if user_id in DEMONS:
-        rt += "Requested to promote a vanilla protaganist to Doujin protaganist."
+        rt += "Requested to promote a Demon to Hentai Dragon."
         data['supports'].remove(user_id)
         DEMONS.remove(user_id)
 
     if user_id in WOLVES:
-        rt += "Requested to promote a Uglybastards to Hentai protaganist."
+        rt += "Requested to promote a Commoner to Hentai Dragon."
         data['whitelists'].remove(user_id)
         WOLVES.remove(user_id)
 
@@ -147,7 +147,7 @@ def addsudo(update: Update, context: CallbackContext) -> str:
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + "\nSuccessfully set Disaster level of {} to Hentai protaganist!".format(
+        rt + "\nSuccessfully set Disaster level of {} to Hentai Dragon!".format(
             user_member.first_name))
 
     log_message = (
@@ -185,16 +185,16 @@ def addsupport(
         data = json.load(infile)
 
     if user_id in DRAGONS:
-        rt += "Requested to demote this Doujin protaganist to vanilla protaganist"
+        rt += "Requested to demote this Dragon to vanilla Demon"
         data['sudos'].remove(user_id)
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-        message.reply_text("This user is already a vanilla protaganist")
+        message.reply_text("This user is already a Demon")
         return ""
 
     if user_id in WOLVES:
-        rt += "Requested to promote this Uglybastards to vanilla protaganist"
+        rt += "Requested to promote this Commoner to Demon"
         data['whitelists'].remove(user_id)
         WOLVES.remove(user_id)
 
@@ -205,7 +205,7 @@ def addsupport(
         json.dump(data, outfile, indent=4)
 
     update.effective_message.reply_text(
-        rt + f"\n{user_member.first_name} was added as a vanilla protaganist!")
+        rt + f"\n{user_member.first_name} was added as a Hentai Demon!")
 
     log_message = (
         f"#SUPPORT\n"
@@ -239,17 +239,17 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
         data = json.load(infile)
 
     if user_id in DRAGONS:
-        rt += "This member is a Doujin protaganist, Demoting to Uglybastards."
+        rt += "This member is a Dragon , Demoting to Commoner."
         data['sudos'].remove(user_id)
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-        rt += "This user is vanilla protaganist, Demoting to Uglybastards."
+        rt += "This user is a Demon, Demoting to Commoner."
         data['supports'].remove(user_id)
         DEMONS.remove(user_id)
 
     if user_id in WOLVES:
-        message.reply_text("This user is already a Uglybastards")
+        message.reply_text("This user is already a Commoner")
         return ""
 
     data['whitelists'].append(user_id)
@@ -260,7 +260,7 @@ def addwhitelist(update: Update, context: CallbackContext) -> str:
 
     update.effective_message.reply_text(
         rt +
-        f"\nSuccessfully promoted {user_member.first_name} to a Demi-Human!")
+        f"\nSuccessfully promoted {user_member.first_name} to a Commonner!")
 
     log_message = (
         f"#WHITELIST\n"
@@ -294,22 +294,22 @@ def addtiger(update: Update, context: CallbackContext) -> str:
         data = json.load(infile)
 
     if user_id in DRAGONS:
-        rt += "This member is a Doujin protaganist, Demoting to NTR protaganist."
+        rt += "This member is a Hentai Dragon, Demoting to Angle."
         data['sudos'].remove(user_id)
         DRAGONS.remove(user_id)
 
     if user_id in DEMONS:
-        rt += "This user is a vanilla protaganist, Demoting to NTR protaganist."
+        rt += "This user is a Hentai Demon, Demoting to Angle."
         data['supports'].remove(user_id)
         DEMONS.remove(user_id)
 
     if user_id in WOLVES:
-        rt += "This user is a Uglybastards, promoting to NTR protaganist."
+        rt += "This user is a Commoner, promoting to Angle."
         data['whitelists'].remove(user_id)
         WOLVES.remove(user_id)
 
     if user_id in TIGERS:
-        message.reply_text("This user is already a NTR protaganist")
+        message.reply_text("This user is already a Angle")
         return ""
 
     data['tigers'].append(user_id)
@@ -320,7 +320,7 @@ def addtiger(update: Update, context: CallbackContext) -> str:
 
     update.effective_message.reply_text(
         rt +
-        f"\nSuccessfully promoted {user_member.first_name} to a Demi-Human!"
+        f"\nSuccessfully promoted {user_member.first_name} to a Angle!"
     )
 
     log_message = (
@@ -549,7 +549,7 @@ def removetiger(update: Update, context: CallbackContext) -> str:
 
 @whitelist_plus
 def whitelist(update: Update, context: CallbackContext):
-    reply = "<b>Known as Uglybastards 🐺:</b>\n"
+    reply = "<b>Known as Commoners 🐺:</b>\n"
     bot = context.bot
     for each_user in WOLVES:
         user_id = int(each_user)
@@ -564,7 +564,7 @@ def whitelist(update: Update, context: CallbackContext):
 
 @whitelist_plus
 def tigerlist(update: Update, context: CallbackContext):
-    reply = "<b>Known as NTR protaganist :</b>\n"
+    reply = "<b>Known as Angles :</b>\n"
     bot = context.bot
     for each_user in TIGERS:
         user_id = int(each_user)
@@ -579,7 +579,7 @@ def tigerlist(update: Update, context: CallbackContext):
 @whitelist_plus
 def supportlist(update: Update, context: CallbackContext):
     bot = context.bot
-    reply = "<b>Known As vanilla protaganist👹:</b>\n"
+    reply = "<b>Known As Hentai Demons👹:</b>\n"
     for each_user in DEMONS:
         user_id = int(each_user)
         try:
@@ -594,7 +594,7 @@ def supportlist(update: Update, context: CallbackContext):
 def sudolist(update: Update, context: CallbackContext):
     bot = context.bot
     true_sudo = list(set(DRAGONS) - set(DEV_USERS))
-    reply = "<b>Known As Doujin protaganist😈:</b>\n"
+    reply = "<b>Known As Hentai Dragons😈:</b>\n"
     for each_user in true_sudo:
         user_id = int(each_user)
         try:
@@ -610,7 +610,7 @@ def sudolist(update: Update, context: CallbackContext):
 def devlist(update: Update, context: CallbackContext):
     bot = context.bot
     true_dev = list(set(DEV_USERS) - {OWNER_ID})
-    reply = "<b>Hentai protaganist Devs list:</b>\n"
+    reply = "<b>Hentai kings Devs list:</b>\n"
     for each_user in true_dev:
         user_id = int(each_user)
         try:
@@ -699,13 +699,13 @@ Group admins/group owners do not need these commands.
 Visit @Freia_Support for more information.
 """
 
-DEV_HANDLER = CommandHandler(("addpro", "addlord"), addpro, run_async=True)
+DEV_HANDLER = CommandHandler(("addpro", "addking"), addpro, run_async=True)
 SUDO_HANDLER = CommandHandler(("addsudo", "adddrag"), addsudo, run_async=True)
 SUPPORT_HANDLER = CommandHandler(("addsupport", "adddemon"), addsupport, run_async=True)
 TIGER_HANDLER = CommandHandler(("addangel"), addtiger, run_async=True)
 WHITELIST_HANDLER = CommandHandler(("addcommon", "addwolf"), addwhitelist, run_async=True)
 
-RMPIRO_HANDLER = CommandHandler(("rmlord", "rmpro"), rmpro, run_async=True)
+RMPIRO_HANDLER = CommandHandler(("rmking", "rmpro"), rmpro, run_async=True)
 UNSUDO_HANDLER = CommandHandler(("removesudo", "rmdrag"), removesudo, run_async=True)
 UNSUPPORT_HANDLER = CommandHandler(("removesupport", "rmdemon"),
                                    removesupport, run_async=True)
@@ -718,7 +718,7 @@ WHITELISTLIST_HANDLER = CommandHandler(["whitelist", "commoners"],
 TIGERLIST_HANDLER = CommandHandler(["angles"], tigerlist, run_async=True)
 SUPPORTLIST_HANDLER = CommandHandler(["supportlist", "demons"], supportlist, run_async=True)
 SUDOLIST_HANDLER = CommandHandler(["sudolist", "dragons"], sudolist, run_async=True)
-DEVLIST_HANDLER = CommandHandler(["devlist", "lords"], devlist, run_async=True)
+DEVLIST_HANDLER = CommandHandler(["devlist", "kings"], devlist, run_async=True)
 
 dispatcher.add_handler(DEV_HANDLER)
 dispatcher.add_handler(SUDO_HANDLER)
